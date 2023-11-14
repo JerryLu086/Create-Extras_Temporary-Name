@@ -6,6 +6,9 @@ import com.simibubi.create.content.contraptions.behaviour.MovementContext;
 import com.simibubi.create.foundation.utility.VecHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.Map;
@@ -30,9 +33,15 @@ public class CompatSeatMovementBehaviour implements MovementBehaviour {
         if (index == -1)
             return;
         Map<UUID, Integer> seatMapping = context.contraption.getSeatMapping();
+        BlockState blockState = context.world.getBlockState(pos);
+        boolean slab =
+                blockState.getBlock() instanceof SlabBlock && blockState.getValue(SlabBlock.TYPE) == SlabType.BOTTOM;
+        boolean solid = blockState.canOcclude() || slab;
 
         // Occupied
         if (!seatMapping.containsValue(index))
+            return;
+        if (!solid)
             return;
 
         Entity toDismount = null;
