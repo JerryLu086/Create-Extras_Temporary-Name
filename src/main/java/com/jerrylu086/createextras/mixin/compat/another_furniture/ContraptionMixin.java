@@ -60,7 +60,7 @@ public abstract class ContraptionMixin {
     // We, sadly, can't access this. So if we want to add seats normally upon assembling, we have to do this ;-;
     @Inject(
             method = "moveBlock",
-            //
+            // #L367 / before "if (state.getBlock() instanceof SeatBlock)"
             at = @At(
                     value = "JUMP",
                     opcode = Opcodes.IFEQ,
