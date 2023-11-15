@@ -35,6 +35,8 @@ repositories {
 }
 
 dependencies {
+	implementation 'org.projectlombok:lombok:1.18.22'
+
 	// Setup
 	minecraft("com.mojang:minecraft:${minecraft_version}")
 	mappings(loom.layered {
@@ -44,7 +46,7 @@ dependencies {
 	})
 	modImplementation("net.fabricmc:fabric-loader:${fabric_loader_version}")
 
-	// dependencies
+	// Dependencies
 	modImplementation("net.fabricmc.fabric-api:fabric-api:${fabric_api_version}")
 
 	// Create - dependencies are added transitively
@@ -59,6 +61,16 @@ dependencies {
 
 	// Another Furniture
 	modImplementation("maven.modrinth:another-furniture:${another_furniture_version}")
+
+	// Hephaestus
+	modImplementation("slimeknights.tconstruct:Hephaestus:${minecraft_version}-${hephaestus_version}") {
+		// Nope get out
+		exclude(group: "mcjty.theoneprobe")
+		exclude(group: "me.alphamode")
+	}
+	modImplementation("slimeknights.mantle:Mantle:${minecraft_version}-${mantle_version}") {
+		exclude(group: "me.alphamode")
+	}
 
 	// Recipe Viewers - Create Fabric supports JEI, REI, and EMI.
 	// See root gradle.properties to choose which to use at runtime.
