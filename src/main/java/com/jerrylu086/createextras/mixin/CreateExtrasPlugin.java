@@ -10,6 +10,7 @@ import java.util.Set;
 
 @SuppressWarnings("unused")
 public class CreateExtrasPlugin implements IMixinConfigPlugin {
+    private static final String COMPAT_PACK = "com.jerrylu086.createextras.mixin.compat.";
 
     @Override
     public void onLoad(String mixinPackage) {
@@ -23,8 +24,18 @@ public class CreateExtrasPlugin implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        if (mixinClassName.startsWith("com.jerrylu086.createextras.mixin.compat.another_furniture")
-                && !FabricLoader.getInstance().isModLoaded("another_furniture")) return false;
+        if (mixinClassName.startsWith(COMPAT_PACK + "another_furniture")
+                && !FabricLoader.getInstance().isModLoaded("another_furniture"))
+            return false;
+
+        if (mixinClassName.startsWith(COMPAT_PACK + "mantle")
+                && !FabricLoader.getInstance().isModLoaded("mantle"))
+            return false;
+
+        if (mixinClassName.startsWith(COMPAT_PACK + "tconstruct")
+                && !FabricLoader.getInstance().isModLoaded("tconstruct"))
+            return false;
+
         return true;
     }
 

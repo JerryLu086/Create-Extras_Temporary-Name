@@ -6,7 +6,10 @@
   "mixins": [
     "compat.another_furniture.AbstractContraptionEntityMixin",
     "compat.another_furniture.BlockMovementChecksMixin",
-    "compat.another_furniture.ContraptionMixin"
+    "compat.another_furniture.ContraptionMixin",
+    "compat.mantle.ClearGlassCopycatFix",
+    "compat.mantle.ConnectedModelAccessor",
+    "compat.tconstruct.SlimeHitboxesFix"
   ],
   "client": [
     "client.GoggleTrinketRendererMixin"
