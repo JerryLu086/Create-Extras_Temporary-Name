@@ -1,4 +1,4 @@
-package com.jerrylu086.createextras.mixin.compat.tconstruct;
+package com.jerrylu086.createextra.mixin.compat.tconstruct;
 
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
@@ -15,7 +15,7 @@ public abstract class SlimeHitboxesFix {
     private final EntityDimensions scaledDim = EntityDimensions.scalable(2.04f, 2.04f);
 
     @Inject(method = "getDimensions", at = @At(value = "TAIL"), cancellable = true)
-    private void entityBoxFix$dim(CallbackInfoReturnable<EntityDimensions> cir) {
+    private void dimFix(CallbackInfoReturnable<EntityDimensions> cir) {
         EntityType self = (EntityType)(Object) this;
         if (self == TinkerWorld.earthSlimeEntity.get() ||
                 self == TinkerWorld.skySlimeEntity.get() ||
@@ -25,26 +25,24 @@ public abstract class SlimeHitboxesFix {
         }
     }
 
-
     @Inject(method = "getWidth", at = @At(value = "TAIL"), cancellable = true)
-    private void entityBoxFix$width(CallbackInfoReturnable<Float> cir) {
+    private void widthFix(CallbackInfoReturnable<Float> cir) {
         EntityType self = (EntityType)(Object) this;
         if (self == TinkerWorld.earthSlimeEntity.get() ||
-                self == TinkerWorld.skySlimeEntity.get() ||
-                self == TinkerWorld.enderSlimeEntity.get() ||
-                self == TinkerWorld.terracubeEntity.get()) {
+            self == TinkerWorld.skySlimeEntity.get()   ||
+            self == TinkerWorld.enderSlimeEntity.get() ||
+            self == TinkerWorld.terracubeEntity.get()) {
             cir.setReturnValue(this.scaledDim.width);
         }
     }
 
-
     @Inject(method = "getHeight", at = @At(value = "TAIL"), cancellable = true)
-    private void entityBoxFix$height(CallbackInfoReturnable<Float> cir) {
+    private void heightFix(CallbackInfoReturnable<Float> cir) {
         EntityType self = (EntityType)(Object) this;
         if (self == TinkerWorld.earthSlimeEntity.get() ||
-                self == TinkerWorld.skySlimeEntity.get() ||
-                self == TinkerWorld.enderSlimeEntity.get() ||
-                self == TinkerWorld.terracubeEntity.get()) {
+            self == TinkerWorld.skySlimeEntity.get()   ||
+            self == TinkerWorld.enderSlimeEntity.get() ||
+            self == TinkerWorld.terracubeEntity.get()) {
             cir.setReturnValue(this.scaledDim.height);
         }
     }

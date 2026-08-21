@@ -1,4 +1,4 @@
-package com.jerrylu086.createextras.compat.another_furniture;
+package com.jerrylu086.createextra.compat.another_furniture;
 
 import com.simibubi.create.AllInteractionBehaviours;
 import com.simibubi.create.AllMovementBehaviours;
@@ -10,6 +10,7 @@ import com.starfish_studios.another_furniture.registry.AFBlockTags;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.state.BlockState;
 
+// Mostly copied directly from the newer vesions of AF.
 public class AnotherFurnitureCompat {
     public static void init() {
         SeatInteractionBehaviour seatInteractionBehaviour = new SeatInteractionBehaviour();

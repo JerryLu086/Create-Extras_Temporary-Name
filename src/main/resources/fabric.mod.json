@@ -1,25 +1,22 @@
 {
   "schemaVersion": 1,
-  "id": "createextras",
+  "id": "createextra",
   "version": "${version}",
-  "name": "Create Extras",
-  "description": "Funni things made to let Jerry's life feel easier.",
+  "name": "Create Extra",
+  "description": "Funni things to make Jerry's life a lil bit easier.",
   "authors": [
     "JerryLu086"
   ],
-  "contact": {
-    "sources": "https://github.com/Fabricators-of-Create/create-fabric-addon-template"
-  },
   "license": "MIT License",
   "icon": "icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.jerrylu086.createextras.CreateExtras"
+      "com.jerrylu086.createextra.CreateExtra"
     ]
   },
   "mixins": [
-    "createextras.mixins.json"
+    "createextra.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=${fabric_loader_version}",

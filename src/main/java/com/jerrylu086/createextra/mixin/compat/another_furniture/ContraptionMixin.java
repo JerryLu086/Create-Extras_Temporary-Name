@@ -1,4 +1,4 @@
-package com.jerrylu086.createextras.mixin.compat.another_furniture;
+package com.jerrylu086.createextra.mixin.compat.another_furniture;
 
 import com.simibubi.create.content.contraptions.AssemblyException;
 import com.simibubi.create.content.contraptions.Contraption;
@@ -57,7 +57,7 @@ public abstract class ContraptionMixin {
         }
     }
 
-    // We, sadly, can't access this. So if we want to add seats normally upon assembling, we have to do this ;-;
+    // Sadly, we can't access this. So if we want to add seats normally upon assembling, we have to do this ;-;
     @Inject(
             method = "moveBlock",
             // #L367 / before "if (state.getBlock() instanceof SeatBlock)"

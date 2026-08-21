@@ -1,4 +1,4 @@
-package com.jerrylu086.createextras.compat.another_furniture;
+package com.jerrylu086.createextra.compat.another_furniture;
 
 import com.simibubi.create.content.contraptions.Contraption;
 import com.simibubi.create.content.contraptions.behaviour.MovementBehaviour;

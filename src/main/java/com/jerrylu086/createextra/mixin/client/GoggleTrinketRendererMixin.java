@@ -1,10 +1,11 @@
-package com.jerrylu086.createextras.mixin.client;
+package com.jerrylu086.createextra.mixin.client;
 
 import com.simibubi.create.compat.trinkets.GoggleTrinketRenderer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
+// Made this because the goggles look quite off when upside down with Created & Updated resource pack.
 @Mixin(GoggleTrinketRenderer.class)
 public abstract class GoggleTrinketRendererMixin {
 

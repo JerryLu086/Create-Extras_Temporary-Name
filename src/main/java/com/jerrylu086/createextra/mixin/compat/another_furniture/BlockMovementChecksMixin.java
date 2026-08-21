@@ -1,6 +1,6 @@
-package com.jerrylu086.createextras.mixin.compat.another_furniture;
+package com.jerrylu086.createextra.mixin.compat.another_furniture;
 
-import com.jerrylu086.createextras.compat.another_furniture.AnotherFurnitureCompat;
+import com.jerrylu086.createextra.compat.another_furniture.AnotherFurnitureCompat;
 import com.simibubi.create.content.contraptions.BlockMovementChecks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

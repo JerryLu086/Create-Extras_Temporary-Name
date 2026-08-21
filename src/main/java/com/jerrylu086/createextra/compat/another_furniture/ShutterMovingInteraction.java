@@ -1,4 +1,4 @@
-package com.jerrylu086.createextras.compat.another_furniture;
+package com.jerrylu086.createextra.compat.another_furniture;
 
 import com.simibubi.create.content.contraptions.Contraption;
 import com.simibubi.create.content.contraptions.behaviour.SimpleBlockMovingInteraction;
@@ -24,7 +24,7 @@ public class ShutterMovingInteraction extends SimpleBlockMovingInteraction {
         BlockState updateState = state;
         BlockPos updatePos = pos;
         if (state.getValue(ShutterBlock.TYPE) == ShutterType.MIDDLE || state.getValue(ShutterBlock.TYPE) == ShutterType.BOTTOM) {
-            int heightUp = (int)contraption.bounds.maxY - updatePos.getY();
+            int heightUp = (int) contraption.bounds.maxY - updatePos.getY();
             for (int i = 0; i < heightUp; i++) {
                 StructureTemplate.StructureBlockInfo above = contraption.getBlocks().get(updatePos.above());
                 if (above != null && above.state.is(state.getBlock()) && above.state.getValue(ShutterBlock.FACING) == updateState.getValue(ShutterBlock.FACING) && above.state.getValue(ShutterBlock.LEFT) == updateState.getValue(ShutterBlock.LEFT) && above.state.getValue(ShutterBlock.OPEN) != open) {
@@ -39,7 +39,7 @@ public class ShutterMovingInteraction extends SimpleBlockMovingInteraction {
         if (state.getValue(ShutterBlock.TYPE) == ShutterType.MIDDLE || state.getValue(ShutterBlock.TYPE) == ShutterType.TOP) {
             updateState = state;
             updatePos = pos;
-            int heightDown = (int)contraption.bounds.minY - updatePos.getY();
+            int heightDown = (int) contraption.bounds.minY - updatePos.getY();
             heightDown = (heightDown < 0) ? -heightDown : heightDown;
             for (int i = 0; i < heightDown; i++) {
                 StructureTemplate.StructureBlockInfo below = contraption.getBlocks().get(updatePos.below());

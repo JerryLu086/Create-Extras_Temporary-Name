@@ -1,4 +1,4 @@
-package com.jerrylu086.createextras.mixin;
+package com.jerrylu086.createextra.mixin;
 
 import net.fabricmc.loader.api.FabricLoader;
 import org.objectweb.asm.tree.ClassNode;
@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Set;
 
 @SuppressWarnings("unused")
-public class CreateExtrasPlugin implements IMixinConfigPlugin {
-    private static final String COMPAT_PACK = "com.jerrylu086.createextras.mixin.compat.";
+public class CreateExtraPlugin implements IMixinConfigPlugin {
+    private static final String COMPAT_PACKAGE = "com.jerrylu086.createextra.mixin.compat.";
 
     @Override
     public void onLoad(String mixinPackage) {
@@ -24,17 +24,8 @@ public class CreateExtrasPlugin implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        if (mixinClassName.startsWith(COMPAT_PACK + "another_furniture")
-                && !FabricLoader.getInstance().isModLoaded("another_furniture"))
-            return false;
-
-        if (mixinClassName.startsWith(COMPAT_PACK + "mantle")
-                && !FabricLoader.getInstance().isModLoaded("mantle"))
-            return false;
-
-        if (mixinClassName.startsWith(COMPAT_PACK + "tconstruct")
-                && !FabricLoader.getInstance().isModLoaded("tconstruct"))
-            return false;
+        if (mixinClassName.startsWith(COMPAT_PACKAGE))
+            return FabricLoader.getInstance().isModLoaded(mixinClassName.substring(COMPAT_PACKAGE.length()).split("\\.")[0]);
 
         return true;
     }

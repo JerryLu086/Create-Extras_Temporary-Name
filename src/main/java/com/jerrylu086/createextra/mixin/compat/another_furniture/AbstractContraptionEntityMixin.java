@@ -1,4 +1,4 @@
-package com.jerrylu086.createextras.mixin.compat.another_furniture;
+package com.jerrylu086.createextra.mixin.compat.another_furniture;
 
 import com.simibubi.create.content.contraptions.AbstractContraptionEntity;
 import com.simibubi.create.content.contraptions.Contraption;
@@ -16,12 +16,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(AbstractContraptionEntity.class)
 public abstract class AbstractContraptionEntityMixin {
-
     @Shadow
     protected Contraption contraption;
 
-    // positionRider(Entity passenger, MoveFunction callback)
-    @Redirect(method = "method_24201", at = @At(value = "INVOKE", target = "Lcom/simibubi/create/content/contraptions/actors/seat/SeatEntity;getCustomEntitySeatOffset(Lnet/minecraft/world/entity/Entity;)D"))
+    @Redirect(method = "positionRider", at = @At(value = "INVOKE", target = "Lcom/simibubi/create/content/contraptions/actors/seat/SeatEntity;getCustomEntitySeatOffset(Lnet/minecraft/world/entity/Entity;)D"))
     private double onPositionRider(Entity entity) {
         BlockPos localPos = this.contraption.getSeatOf(entity.getUUID());
         if (this.contraption != null && this.contraption.getBlocks().containsKey(localPos)) {
@@ -38,5 +36,4 @@ public abstract class AbstractContraptionEntityMixin {
         if (e instanceof SeatEntity)
             cir.setReturnValue(false);
     }
-
 }

@@ -1,4 +1,4 @@
-package com.jerrylu086.createextras.mixin.compat.mantle;
+package com.jerrylu086.createextra.mixin.compat.mantle;
 
 import io.github.fabricators_of_create.porting_lib.model.ModelProperty;
 import net.minecraft.core.Direction;
