@@ -1,6 +1,7 @@
 package com.jerrylu086.createextra.mixin.compat.mantle;
 
 import com.mojang.math.Transformation;
+import com.simibubi.create.content.decoration.copycat.CopycatBlock;
 import io.github.fabricators_of_create.porting_lib.model.IModelData;
 import net.minecraft.client.resources.model.ModelState;
 import net.minecraft.core.BlockPos;
@@ -15,7 +16,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 import slimeknights.mantle.client.model.connected.ConnectedModel;
-import slimeknights.mantle.client.model.connected.ConnectedModelRegistry;
 
 import java.util.function.Predicate;
 
@@ -41,10 +41,22 @@ public abstract class ConnectedModelMixin {
     )
     private void getModelDataForCopycat(BlockAndTintGetter world, BlockPos pos, BlockState state, IModelData tileData,
                                         CallbackInfoReturnable<IModelData> cir, IModelData data) {
-        ConnectedModelAccessor parent = (ConnectedModelAccessor) this.parent;
+        Transformation rotation = transforms.getRotation();
+        BlockState actualState = world.getBlockState(pos);
+        ConnectedModelAccessor widenedParent = (ConnectedModelAccessor) parent;
 
-        if (parent.getConnectionPredicate() == ConnectedModelRegistry.getPredicate("block")) {
-            data.setData(ConnectedModelAccessor.canIGetAConnection(), getConnections((dir) -> false));
+        if (actualState.getBlock() instanceof CopycatBlock ufb) {
+            data.setData(ConnectedModelAccessor.canIGetAConnection(), getConnections((dir) -> {
+                BlockPos relative = pos.relative(Direction.rotate(rotation.getMatrix(), dir));
+                BlockState neighbor = world.getBlockState(relative);
+                if (widenedParent.getSides().contains(dir)
+                        && !ufb.canFaceBeOccluded(actualState, dir)
+                        && (neighbor.getBlock() instanceof CopycatBlock)) {
+                    return CopycatBlock.getMaterial(world, pos).getBlock() == CopycatBlock.getMaterial(world, relative).getBlock();
+                }
+
+                return false;
+            }));
             cir.setReturnValue(data);
         }
     }

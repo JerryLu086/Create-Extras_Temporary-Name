@@ -10,6 +10,7 @@
     "compat.another_furniture.ContraptionMixin",
     "compat.mantle.ConnectedModelMixin",
     "compat.mantle.ConnectedModelAccessor",
+    "compat.createaddition.LiquidBurnerStrawFix",
     "compat.tconstruct.SlimeHitboxesFix"
   ],
   "client": [

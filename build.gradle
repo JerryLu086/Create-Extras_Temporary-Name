@@ -17,7 +17,7 @@ repositories {
     maven { url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/" } // Forge Config API Port
     maven { url = "https://modmaven.dev" } // Flywheel
     maven { url = "https://maven.ladysnake.org/releases" } // Trinkets
-    maven { url = "https://api.modrinth.com/maven" } // Ad Astra
+    maven { url = "https://api.modrinth.com/maven" } // Ad Astra, CC&A
     maven { url = "https://maven.wispforest.io/releases/" } // Star Fluid
 }
 
@@ -35,6 +35,8 @@ dependencies {
 
     // Create - dependencies are added transitively
     modImplementation("com.simibubi.create:create-fabric-${minecraft_version}:${create_version}")
+
+    modImplementation("maven.modrinth:createaddition:${ccaa_version}")
 
     // Development QOL
     modLocalRuntime("maven.modrinth:lazydfu:${lazydfu_version}")
@@ -91,7 +93,7 @@ processResources {
 }
 
 tasks.withType(JavaCompile).configureEach {
-	it.options.release = 17
+	it.options.release = 21
 }
 
 java {
@@ -100,8 +102,8 @@ java {
 	// If you remove this line, sources will not be generated.
 	withSourcesJar()
 
-	sourceCompatibility = JavaVersion.VERSION_17
-	targetCompatibility = JavaVersion.VERSION_17
+	sourceCompatibility = JavaVersion.VERSION_21
+	targetCompatibility = JavaVersion.VERSION_21
 }
 
 jar {
